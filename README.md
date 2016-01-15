@@ -8,13 +8,13 @@ Upon execution, the app looks through its command line switches, and in case it 
 
 ## But why...?
 
-For use in the [#screensaverjam](http://itch.io/jam/screensaverjam) of course! I figured it might be fun to mix the bleeding edge with the extremely obsolete, and besides, this could allow suspicios people to check out in their browsers what the screen saver does without actually downloading an executable and registering it as a screen saver. Also, I plan to play around with the HTML 5 canvas for the jam.
+For use in the [#screensaverjam](http://itch.io/jam/screensaverjam) of course! I figured it might be fun to mix the bleeding edge with the extremely obsolete, and besides, this could allow suspicious people to check out what the screen saver does, in their browsers, without actually downloading an executable and registering it as a screen saver. Also, I plan to play around with the HTML 5 canvas for the jam.
 
-## Okay, nevermind the screen saver part. What are the drawbacks?
+## Okay, this is actually cool. What are the drawbacks?
 
-First of all, electron is huge, meaning your simple screensaver will take close to a hundred megabyte to download, which is a bit extreme. Also, due to my actually limited knowledge of electron, I wasn't able to (or at leas patient enough) to:
+First of all, electron is huge, meaning your simple screensaver will take close to a hundred megabytes to download, which is a bit extreme. Also, due to my actually limited knowledge of electron, I wasn't able (or at least patient enough) to:
 
-- Implement the /c and /p switches (configuration mode and preview mode, respectively; the first one would be easy, but the second requires some nasty ```user32.dll``` calls I just didn't look forward to.
+- Implement the /c and /p switches for the screensaver (configuration mode and preview mode, respectively; the first one would be easy, but the second requires some nasty ```user32.dll``` calls I just didn't look forward to.)
 - Properly package the application. Instead of a nice, single .SCR file, the screensaver will have to be distributed in a ZIP archive or something like that. Windows will be install it as a screen saver nonetheless, though.
 
 ## Hey, I also want to make a screensaver using bleeding-edge technology!
@@ -36,9 +36,10 @@ Edit index.html to create a screensaver of your own – but not until the jam st
 
 ## I made an awesome screensaver. How to distribute the thing?
 
-For a nice web preview, you'll only need index.html (and anything else you add on your own). You'll want to remove any "require" calls and related code (like the ipc calls and the handlers that call them, in my example).
+*For a nice web preview*, you'll only need index.html (and anything else you add on your own). You'll want to remove any ```require(...)``` calls and related code (like the ipc calls in my example).
 
-To make it work as a screensaver:
+*To make it work as a screensaver*:
+
 1. Copy everything from ```%APPDATA%\npm\node_modules\electron-prebuilt\dist```
 2. Create a folder called "app" in the "resources" folder, and copy your app files (including main.js and package.json) to it.
 3. Rename "electron.exe" to "myawesomescreensaver*.scr*", to turn it into a screensaver.

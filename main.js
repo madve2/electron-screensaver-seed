@@ -8,7 +8,7 @@ const BrowserWindow = electron.BrowserWindow;  // Module to create native browse
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-// Only open if the screensaver should be shown (/s param)
+// Stay open only if the screensaver should be shown (/s param)
 // We don't implement /c (configure) and /p (preview) for now... 
 var shouldStart = false;
 for (var i = 0; i < process.argv.length; i++) {
@@ -43,7 +43,7 @@ app.on('ready', function() {
   // Hide the menu
   mainWindow.setMenu(null);
   
-  // Dev tools
+  // Dev tools (when in doubt, uncomment!)
   //mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
@@ -56,7 +56,6 @@ app.on('ready', function() {
 });
 
 // Quit the screensaver when the renderer process says so
-// (based on user input)
 var ipc = require('ipc');
 ipc.on('sendQuit', function(event){
     app.quit(); 

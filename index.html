@@ -5,8 +5,10 @@
     <title>Cat Screen Saver</title>
   </head>
   <!-- TODO: hiding the mouse cursor would be nice, but cursor: none doesn't work -->
+  <!-- Also, don't use the style attribute, ever. Okay, maybe just this time... -->
   <body id="body" style="background-color: black; background-size: cover;">
     <script>
+        // require ipc to tell the app to close when needed
         var ipc = require('ipc');
         var sendQuit = function(){
             ipc.send('sendQuit');
@@ -15,7 +17,7 @@
         document.addEventListener('keydown', sendQuit);
         document.addEventListener('mousedown', sendQuit);
         
-        // delay mousemove tracking, otherwise we'll close immediately
+        // Also quit on mouse movement, but delay mousemove tracking, otherwise we'll close immediately
         setTimeout( function() {
             var treshold = 5;
             document.addEventListener('mousemove', function(e) {
@@ -26,7 +28,8 @@
             });
         }, 3000);
         
-        var body = document.getElementById("body");
+        // And now the fun part – the actual thing the screensaver displays. Replace this with your own creation!
+        var body = document.getElementById("body"); //you now, I wanted to be lazy on this
         var changeImage = function() {
             var url = "http://lorempixel.com/" + innerWidth + "/" + innerHeight + "/cats/" + Math.ceil(Math.random() * 10);
             var preloader = new Image();
